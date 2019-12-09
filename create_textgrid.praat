@@ -6,7 +6,7 @@
 
 ### CHANGE ME!
 # directory with wav files that need TextGrids
-main_dir$ = "C:\Users\axelb\Data Folders\MSc Thesis\data\input_video\"
+main_dir$ = "/home/wei/Documents/CODE/speechcutting/file/"
 ###
 
 ## Maybe change me
@@ -23,7 +23,7 @@ nSpeakers = Get number of strings
 for j from 1 to nSpeakers
 	selectObject: "Strings speakers"
 	speaker$ = Get string: j
-	dir$ = main_dir$ + speaker$ + "\"
+	dir$ = main_dir$ + speaker$ + "/"
 
 	Create Strings as file list: "transcripts", dir$ + "*.txt"
 
