@@ -23,10 +23,10 @@ def write_txt(name,txt):
 
 ### test video
 
-ViPath = 'videos'
-AuPath = 'audio'
-ViList = []
-AuList = []
+# ViPath = 'videos'
+# AuPath = 'audio'
+# ViList = []
+# AuList = []
 
 # for videos in os.listdir(ViPath):
 #     if videos.endswith('.mp4'):
