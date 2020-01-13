@@ -6,7 +6,7 @@
 
 ### CHANGE ME!
 # directory with wav files that need TextGrids
-main_dir$ = "/media/wei/ww-5T/Kinship/speech/aud/"
+main_dir$ = "/media/wei/ww-5T/Kinship/speech/dutch-eng/aud/"
 ###
 
 ## Maybe change me

@@ -27,7 +27,7 @@ with open('/media/wei/ww-5T/Kinship/label/family_kin.csv') as ff:
     reader = csv.reader(ff, delimiter=',')
     for it in reader:
         # check language
-        if it[4]=='en':
+        if it[4]=='nl':
             fami_pth = get_fam_pth(it[0])
             fami_pth = os.path.join(root_pth,fami_pth)
             ptho,ptht = get_exact_info(fami_pth)
@@ -40,7 +40,7 @@ print(en_vid_ls)
 
 ###############
 
-root_aud = '/media/wei/ww-5T/Kinship/speech/aud/'
+root_aud = '/media/wei/ww-5T/Kinship/speech/eng/'
 ViList = en_vid_ls
 AuList = []
 def get_au_nm(pth):
@@ -64,7 +64,7 @@ def get_aud_pth(vid_ls):
 AuList = get_aud_pth(ViList)
 
 ############################ get audio
-#
+# # #
 # for vi,au in zip(ViList,AuList):
 #     aupth = au[:-14]
 #     if not os.path.exists(aupth):
@@ -97,8 +97,10 @@ AuList = get_aud_pth(ViList)
 #     with open(txt_pth,'w') as tt:
 #         tt.write(txt)
 #
-#
+# i = 0
 # for aud_nam in AuList:
+#     # i +=1
+#     # if i <284:
 #
 #     # Loads the audio into memory
 #     with io.open(aud_nam, 'rb') as audio_file:
@@ -109,7 +111,7 @@ AuList = get_aud_pth(ViList)
 #         encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
 #         sample_rate_hertz=16000,
 #         audio_channel_count=2,
-#         language_code='en-US'          # en-GB en-US nl-NL
+#         language_code='nl-NL'          # en-GB en-US nl-NL
 #
 #     )
 #
@@ -139,39 +141,41 @@ AuList = get_aud_pth(ViList)
 
 ###################################### gether
 
-import textgrid
-import os
-
-
-
-cut_pth = '/media/wei/ww-5T/Kinship/speech/cuts/'
-grid_pth = '/media/wei/ww-5T/Kinship/speech/out/'
-for vi,au in zip(ViList,AuList):
-    #
-    # vi = '/home/wei/Documents/CODE/speechcutting/English.mp4'
-    # cut_p = '/home/wei/Documents/CODE/speechcutting/cut'
-    cut_p = cut_pth + au.split('/')[-1][:-4]
-    if not os.path.exists(cut_p):
-        os.makedirs(cut_p)
-    grid = grid_pth+ au.split('/')[-1][:-4]+'.TextGrid'
-
-    t = textgrid.TextGrid()
-    t.read(grid)
-    phonem_tier = t[1]
-    count = 0
-    maxT = phonem_tier.maxTime
-
-    for i in phonem_tier:
-        phone = i.mark
-        if phone !='':
-            count +=1
-            t_star = i.minTime
-            t_stop = i.maxTime
-            if count > 1:
-                t_star -=0.1
-                if t_stop !=maxT:
-                    t_stop +=0.1
-            comm = 'ffmpeg  -nostats -loglevel 0 -i  {} -ss {} -to {} {}/{}_{}.mp4'.format(vi,t_star,t_stop,cut_p,count,phone)
-            os.system(comm)
-
-print(6)
+# import textgrid
+# import os
+#
+#
+#
+# cut_pth = '/media/wei/ww-5T/Kinship/speech/dutch-eng/cuts/'
+# grid_pth = '/media/wei/ww-5T/Kinship/speech/dutch-eng/out/'
+# for vi,au in zip(ViList,AuList):
+#
+#     #
+#     # vi = '/home/wei/Documents/CODE/speechcutting/English.mp4'
+#     # cut_p = '/home/wei/Documents/CODE/speechcutting/cut'
+#     cut_p = cut_pth + au.split('/')[-1][:-4]
+#     if not os.path.exists(cut_p):
+#         os.makedirs(cut_p)
+#     grid = grid_pth+ au.split('/')[-1][:-4]+'.TextGrid'
+#     if not os.path.exists(grid):
+#         continue
+#     t = textgrid.TextGrid()
+#     t.read(grid)
+#     phonem_tier = t[1]
+#     count = 0
+#     maxT = phonem_tier.maxTime
+#
+#     for i in phonem_tier:
+#         phone = i.mark
+#         if phone !='':
+#             count +=1
+#             t_star = i.minTime
+#             t_stop = i.maxTime
+#             if count > 1:
+#                 t_star -=0.0
+#                 if t_stop !=maxT:
+#                     t_stop +=0.0
+#             comm = 'ffmpeg  -nostats -loglevel 0 -i  {} -ss {} -to {} {}/{}_{}.mp4'.format(vi,t_star,t_stop,cut_p,count,phone)
+#             os.system(comm)
+#
+# print(6)
