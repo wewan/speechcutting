@@ -29,7 +29,7 @@ eng_pth = '/home/wei/Documents/DATA/kinship/speech/eng/cuts'
 dutch_pth = '/home/wei/Documents/DATA/kinship/speech/dutch-eng/cuts'
 
 mem_ls = []
-with open('/home/wei/Documents/DATA/kinship/speech/label/kin_simple.csv') as ff:
+with open('/home/wei/Documents/DATA/kinship/Nemo/label/kin_simple.csv') as ff:
     reader = csv.reader(ff, delimiter=',')
     for it in reader:
         mem_ls.append(it[0])
